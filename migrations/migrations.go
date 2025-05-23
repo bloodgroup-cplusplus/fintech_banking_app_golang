@@ -1,9 +1,9 @@
 package migrations
 
 import (
-	"github.com/bloodgroup-cplusplus/fintech_banking_app_golang/helpers"
+	"github.com/bloodgroup-cplusplus/fintech_banking_app/helpers"
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/dialect/postgres"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 )
 
 
