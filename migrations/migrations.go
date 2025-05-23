@@ -1,7 +1,7 @@
 package migrations
 
 import (
-	"github.com/bloodgroup-cplusplus/fintech_banking_app/helpers"
+	"github.com/bloodgroup-cplusplus/fintech_banking_app_golang/helpers"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/dialect/postgres"
 )
@@ -26,7 +26,7 @@ type Account struct {
 
 
 func connectDB() *grom.DB {
-	db, err := gorm.Open("postgres", "host=127.0.0.1 port=5432 user=postgres dbname=bankapp password=postgres sslmode=disabled")
+	db, err := gorm.Open("postgres", "host=127.0.0.1 port=5432 user=postgres dbname=bankapp password=postgres sslmode=disable")
 
 	helpers.HanldeErr(err)
 	return db
@@ -46,6 +46,15 @@ func createAccounts() {
 account := Account{Type:"Daily Account", Name:string(users[i].Username+"'s"+ "account"), Balance:uint(10000 * int(i+1)), UserID: user.ID}
 		db.Create(&account)
 	}
+	defer db.Close()
+}
+
+// functions to migrate our tables 
+func Migrate() {
+	db := connectDB()
+	db.AutoMigrate(&User{}, &Account{})
+	defer db.Close()
+	createAccounts()
 }
 
 	
