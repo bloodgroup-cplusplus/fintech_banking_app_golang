@@ -42,6 +42,11 @@ func createAccounts() {
 	for i :=0 ; i<len(users); i++ {
 		generatedPassword := helpers.HashAndSalt([]byte(users[i].Username))
 		user := User{Username: users[i].Username, users[i].Email, Password:genratedPassword}
+		db.Create(&user)
+account := Account{Type:"Daily Account", Name:string(users[i].Username+"'s"+ "account"), Balance:uint(10000 * int(i+1)), UserID: user.ID}
+		db.Create(&account)
+	}
+}
 
 	
 
