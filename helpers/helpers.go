@@ -3,10 +3,11 @@ package helpers
 
 import (
 	"golang.org/x/crypto/bcrypt"
+	
 )
 
 
-func HandleErr(err rror) {
+func HandleErr(err error) {
 
 	if err !=nil {
 		panic(err.Error())
@@ -17,7 +18,7 @@ func HandleErr(err rror) {
 func HashAndSalt (pass [] byte) string {
 	hashed, err := bcrypt.GenerateFromPassword(pass,bcrypt.MinCost)
 
-	HnaldeErr(err)
+	HandleErr(err)
 	return string(hashed)
 }
 
