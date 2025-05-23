@@ -9,16 +9,6 @@ import (
 
 
 
-
-
-
-func connectDB() *gorm.DB {
-	db, err := gorm.Open("postgres", "host=127.0.0.1 port=5432 user=postgres dbname=bankapp password=postgres sslmode=disable")
-
-	helpers.HandleErr(err)
-	return db
-}
-
 func createAccounts() {
 	db := connectDB()
 	users := &[2] interfaces.User {
